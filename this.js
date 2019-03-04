@@ -32,3 +32,28 @@ newFn // Correct Syntax
 console.log('\n<---------------------------->\nFunction.apply:\n')
 Human.apply(ob, someAr) // don't need to split vars
 
+console.log('<------------------>\nnew Binding')
+
+new Human('a','l','e') //compare to line 19 Human(5,6,7)
+
+
+var obj = {
+  id: 42,
+  counter: function counter() {
+    setTimeout(function() {
+      console.log(this.id);
+    }, 1000);
+  }
+};
+
+// Nested function need to bind this otherwise it has the this context of the containing function which is undefined
+var obj = {
+  id: 42,
+  counter: function counter() {
+    setTimeout(function() {
+      console.log(this.id);
+    }.bind(this), 1000);
+  }
+};
+
+obj.counter()
